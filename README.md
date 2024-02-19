@@ -2,6 +2,24 @@
 ### Course: Formal Languages & Finite Automata
 ### Author: Durbailo Daniel
 ### Group: FAF-222
+### Variant: 9
+---
+## My Variant (9):
+```java
+Variant 9:
+VN={S, B, D, Q}, 
+VT={a, b, c, d},
+P={ 
+    S → aB
+    S → bB
+    B → cD
+    D → dQ
+    Q → bB
+    D → a
+    Q → dQ
+}
+```
+
 ---
 ## Theory:
 A language, in a broad sense, is a system of communication that uses symbols (such as words, gestures, or symbols) and rules to convey meaning. Languages can be spoken, written, or signed, and they are essential for human communication and the expression of thoughts, ideas, and emotions.
@@ -361,7 +379,7 @@ Reached final state 'f'
 Input string can be obtained via state transitions.
 
 ```
-Above you can see the algorithm that a word goes trough in order to be checked if it validates the Grammar Rules. In this example it validates the rules.
+Above you can see the algorithm that a word goes through in order to be checked if it validates the Grammar Rules. In this example it validates the rules.
 Below I will attach an example of a string that does not validate the rules:
 ```java
 Enter input string: agdsgags
