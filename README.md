@@ -93,7 +93,7 @@ public class Main {
         scanner.close();
     }
 }
-
+```
 ---
 This code demonstrates how to use the Grammar and FiniteAutomaton classes to generate strings and check if a given input string can be obtained via state transitions. Make sure to adjust any package names or class names as necessary to match your project structure.
 ---
@@ -201,7 +201,7 @@ public class Grammar {
         return finalStates;
     }
 }
-
+```
 ---
 This Java code defines a Grammar class representing a context-free grammar (CFG). It includes methods to generate valid strings based on the grammar and to convert the grammar into a finite automaton. The grammar is initialized with predefined non-terminal symbols, terminal symbols, and production rules. The generateStrings method produces a specified number of unique strings following the grammar rules, while convertToFiniteAutomaton converts the grammar into a finite automaton representation.
 ---
@@ -307,7 +307,7 @@ public class FiniteAutomaton {
         return sb.toString();
     }
 }
-
+```
 
 ---
 This Java code represents a class called FiniteAutomaton, which models a finite automaton. It includes methods to set states, alphabet, transitions, initial state, and final states of the automaton. Additionally, it provides a method canReachString to determine if a given input string can be reached by transitioning through the automaton's states.
@@ -315,8 +315,60 @@ This Java code represents a class called FiniteAutomaton, which models a finite 
 
 
 ## Conclusions / Screenshots / Result:
-<img width="633" alt="image" src="https://github.com/selavii/LimbajeFormale/assets/114013280/cfdb32d3-5ce9-4c5b-a78f-a0d79702dd5f">
-In this image you can see an example of 5 generated strings based on the given Grammar.
+### Example 1:
+```java
+Generated Strings:
+acddbca
+acdddddbca
+aca
+bcdddddbcdddddddbcdbcdddbca
+bcdbca
+Finite Automaton:
+States: [Q, B, S, D]
+Alphabet: [a, b, c, d]
+Transitions: {Q={b=B, d=Q}, B={c=D}, S={a=B, b=B}, D={a=f, d=Q}}
+Initial State: S
+Final States: [a]
+```
+In this example you can see 5 generated strings based on the given Grammar.
 
-<img width="513" alt="image" src="https://github.com/selavii/LimbajeFormale/assets/114013280/0fd321f4-1cc8-4699-bf44-7b825a694860">
-In this image you can see an example of a string check made by FiniteAutomaton in order to see if it can be obtained using the Grammar Rules.
+
+### Example 2:
+```java
+Generated Strings:
+aca
+bca
+acdbcdbca
+acdbca
+bcddbcddbca
+Finite Automaton:
+States: [Q, B, S, D]
+Alphabet: [a, b, c, d]
+Transitions: {Q={b=B, d=Q}, B={c=D}, S={a=B, b=B}, D={a=f, d=Q}}
+Initial State: S
+Final States: [a]
+```
+Another example where you can see the generated strings based on the grammar.
+```java
+Enter input string: aca
+Current State: S, Symbol: a
+New State: B
+Current State: B, Symbol: c
+New State: D
+Current State: D, Symbol: a
+New State: f
+Reached final state 'f'
+Input string can be obtained via state transitions.
+
+```
+Above you can see the algorithm that a word goes trough in order to be checked if it validates the Grammar Rules. In this example it validates the rules.
+Below I will attach an example of a string that does not validate the rules:
+```java
+Enter input string: agdsgags
+Current State: S, Symbol: a
+New State: B
+Current State: B, Symbol: g
+No transition defined for symbol g in state B
+Input string cannot be obtained via state transitions.
+
+```
