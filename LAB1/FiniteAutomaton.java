@@ -41,14 +41,14 @@ public class FiniteAutomaton {
 
     public boolean canReachString(String inputString) {
         Character currentState = initialState;
-        boolean foundLastA = false; // Flag to track if the last 'a' is encountered
+        boolean foundLastA = false;
 
         for (char symbol : inputString.toCharArray()) {
             System.out.println("Current State: " + currentState + ", Symbol: " + symbol);
 
             if (!transitions.containsKey(currentState) || !transitions.get(currentState).containsKey(symbol)) {
                 System.out.println("No transition defined for symbol " + symbol + " in state " + currentState);
-                return false; // No transition defined for currentState and symbol
+                return false;
             }
 
             currentState = transitions.get(currentState).get(symbol);
@@ -59,7 +59,7 @@ public class FiniteAutomaton {
             System.out.println("New State: " + currentState);
         }
 
-        // If 'a' is not found, or if the last state is not 'f', the string cannot be valid
+
         if (!foundLastA || currentState != 'f') {
             return false;
         }
