@@ -1,22 +1,37 @@
 package LAB2;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, List<String>> language = new HashMap<>();
-        language.put("S", Arrays.asList("aB", "bB"));
-        language.put("B", Collections.singletonList("cD"));
-        language.put("D", Arrays.asList("dQ", "a"));
-        language.put("Q", Arrays.asList("bB", "dQ"));
+        Grammar grammar = new Grammar();
+        FiniteAutomaton finiteAutomaton = grammar.convertToFiniteAutomaton();
 
-        Grammar grammar = new Grammar(language);
-        System.out.println("Grammar is: " + grammar.classifyGrammar());
+        // Display generated strings
+        System.out.println("Generated Strings:");
+        for (String str : grammar.generateStrings(5)) {
+            System.out.println(str);
+        }
+
+        // Display finite automaton
+        System.out.println("Finite Automaton:");
+        System.out.println(finiteAutomaton);
+
+        // Check if input string can be reached by finite automaton
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter input string: ");
+        String inputString = scanner.nextLine();
+        boolean canReach = finiteAutomaton.canReachString(inputString);
+        if (canReach) {
+            System.out.println("Input string can be obtained via state transitions.");
+        } else {
+            System.out.println("Input string cannot be obtained via state transitions.");
+        }
+
+        // Classify the grammar and display its type
+        String grammarType = grammar.classify();
+        System.out.println("Grammar type: " + grammarType);
+
+        scanner.close();
     }
 }
